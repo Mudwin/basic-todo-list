@@ -14,7 +14,7 @@
   &.is-disappearing {
     opacity: 0;
     translate: 0 -75%;
-    transition-duration: calc(var(--transition-duration) * 2);
+    transition-duration: calc(var(--transition-duration));
     pointer-events: none;
 
     & ~ .todo-item {
