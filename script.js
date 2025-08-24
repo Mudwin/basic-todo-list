@@ -142,6 +142,40 @@ class Todo {
       ? "There are no tasks yet"
       : "";
   }
+
+  addItem(title) {
+    this.state.items.push({
+      id: crypto?.randomUUID() ?? Data.now().toString(),
+      title: title,
+      isChecked: false,
+    });
+
+    this.saveItemsToLocalStorage();
+    this.render();
+  }
+
+  deleteItem(id) {
+    this.state.items = this.state.items.filter((item) => item.id !== id);
+
+    this.saveItemsToLocalStorage();
+    this.render();
+  }
+
+  toggleCheckedState(id) {
+    this.state.items = this.state.items.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          isChecked: !item.isChecked,
+        };
+      }
+
+      return item;
+    });
+
+    this.saveItemsToLocalStorage();
+    this.render();
+  }
 }
 
 new Todo();
